@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  Details.swift
 //  MovieApp
 //
 //  Created by Gül Karataş on 6.10.2024.
@@ -7,13 +7,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class Details: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
 
+        
+    }
+    
+
+    
 
 }
-
