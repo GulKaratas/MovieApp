@@ -36,10 +36,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emily" translatesAutoresizingMaskIntoConstraints="NO" id="WIs-1b-KVu">
-                                                    <rect key="frame" x="40" y="15" width="100" height="120"/>
+                                                    <rect key="frame" x="-870" y="15" width="1920" height="120"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="100" id="2Nz-Lk-GoU"/>
                                                         <constraint firstAttribute="height" constant="120" id="9yA-Bo-P76"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="HhD-L0-bgw"/>
                                                     </constraints>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hW0-j7-hqb">
@@ -82,6 +82,7 @@
                     <navigationItem key="navigationItem" title="Filmler" id="81f-fh-frQ"/>
                     <connections>
                         <outlet property="movieCollectionView" destination="bOo-79-qu3" id="sgZ-Kx-m1J"/>
+                        <segue destination="eOw-IV-Fb7" kind="presentation" identifier="toDetailsVC" id="Q3z-JK-znl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -93,11 +94,46 @@
             <objects>
                 <viewController id="eOw-IV-Fb7" customClass="Details" customModule="MovieApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vfn-pw-Ows">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="d1q-sp-nRg">
+                                <rect key="frame" x="46.666666666666657" y="136" width="300" height="570"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ottoman" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIX-Jc-Jpc">
+                                        <rect key="frame" x="98.666666666666686" y="0.0" width="102.66666666666669" height="30"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ottoman" translatesAutoresizingMaskIntoConstraints="NO" id="we1-jN-ipV">
+                                        <rect key="frame" x="0.0" y="60" width="300" height="450"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="450" id="5L0-i8-vnb"/>
+                                            <constraint firstAttribute="width" constant="300" id="NoQ-nm-Dzv"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20 TL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ij2-Vu-ZWY">
+                                        <rect key="frame" x="116.66666666666669" y="540" width="66.666666666666686" height="30"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="ptZ-IN-1Cs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="d1q-sp-nRg" firstAttribute="centerX" secondItem="vfn-pw-Ows" secondAttribute="centerX" id="Cel-lE-lO3"/>
+                            <constraint firstItem="d1q-sp-nRg" firstAttribute="centerY" secondItem="vfn-pw-Ows" secondAttribute="centerY" id="y3l-B0-6Ss"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="we1-jN-ipV" id="HSU-Ml-9Zw"/>
+                        <outlet property="movieLabel" destination="wIX-Jc-Jpc" id="kPN-cz-faG"/>
+                        <outlet property="priceLabel" destination="Ij2-Vu-ZWY" id="vKk-Gm-dZF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2yH-Xf-FWP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -124,6 +160,7 @@
     </scenes>
     <resources>
         <image name="emily" width="1920" height="1280"/>
+        <image name="ottoman" width="300" height="450"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

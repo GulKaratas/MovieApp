@@ -54,7 +54,7 @@ class Home: UIViewController {
     }
 }
 
-extension Home: UICollectionViewDelegate, UICollectionViewDataSource {
+extension Home: UICollectionViewDelegate, UICollectionViewDataSource , CellProtocol{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movies.count
     }
@@ -68,15 +68,34 @@ extension Home: UICollectionViewDelegate, UICollectionViewDataSource {
         cell.movieImageView.image = UIImage(named: movie.image!)
         cell.priceLabel.text = "\(movie.price!)"
         
-        cell.movieImageView.contentMode = .scaleAspectFill
-        cell.movieImageView.clipsToBounds = true
+        cell.cellProtocol = self
+        cell.indexPath = indexPath
 
         
-        cell.layer.borderColor = UIColor.lightGray.cgColor
-        cell.layer.borderWidth = 0.3
+        cell.layer.borderColor = UIColor.gray.cgColor
+        cell.layer.borderWidth = 0.5
         cell.layer.cornerRadius = 10.0
         
         
+        
         return cell
+    }
+    
+     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
+        let movie = movies[indexPath.row]
+        performSegue(withIdentifier: "toDetailsVC", sender: movie)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toDetailsVC" {
+            if let movie = sender as? Movies {
+                let detailsVC = segue.destination as! Details
+                detailsVC.movie = movie
+            }
+        }
+    }
+    func AddToCart(indexPath: IndexPath) {
+        let movie = movies[indexPath.row]
+        print("\(movie.name!) sepete eklendi")
     }
 }
