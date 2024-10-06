@@ -29,10 +29,54 @@ class Home: UIViewController {
         movies.append(movie5)
         movies.append(movie6)
         
+        movieCollectionView.delegate = self
+        movieCollectionView.dataSource = self
+        
+        let design = UICollectionViewFlowLayout()
+
+        design.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+
+        
+        design.minimumInteritemSpacing = 1
+        design.minimumLineSpacing = 10
+
+       
+        let screenWidth = UIScreen.main.bounds.width
+
+       
+        let itemWidth = (screenWidth - 30) / 2.02
+
+        design.itemSize = CGSize(width: itemWidth, height: itemWidth * 1.6)
+        movieCollectionView.collectionViewLayout = design
+
+        
         
     }
+}
+
+extension Home: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return movies.count
+    }
     
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let movie = movies[indexPath.row]
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as! MovieCell
+        
+        cell.movieImageView.image = UIImage(named: movie.image!)
+        cell.priceLabel.text = "\(movie.price!)"
+        
+        cell.movieImageView.contentMode = .scaleAspectFill
+        cell.movieImageView.clipsToBounds = true
 
-   
-
+        
+        cell.layer.borderColor = UIColor.lightGray.cgColor
+        cell.layer.borderWidth = 0.3
+        cell.layer.cornerRadius = 10.0
+        
+        
+        return cell
+    }
 }
